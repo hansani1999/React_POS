@@ -7,6 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import GroupIcon from '@mui/icons-material/Group';
+import CategoryIcon from '@mui/icons-material/Category';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 class Dashboard extends Component{
     constructor(props) {
@@ -28,11 +30,11 @@ class Dashboard extends Component{
                         <div>
                             <Card sx={{ maxWidth: 345 }}>
                                 <div style={{height:'140px',backgroundColor:'#ab47bc',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">25</Typography>
+                                    <Typography variant="h2" component="div">60</Typography>
                                 </div>
                                 <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Total Customers</Typography>
+                                    <CategoryIcon fontSize="large" style={{marginRight:'10px'}}/>
+                                    <Typography gutterBottom variant="h5" component="div">Products</Typography>
                                 </CardContent>
                             </Card>
                         </div>
@@ -41,64 +43,24 @@ class Dashboard extends Component{
                         <div>
                             <Card sx={{ maxWidth: 345 }}>
                                 <div style={{height:'140px',backgroundColor:'#00b8d4',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">25</Typography>
+                                    <Typography variant="h2" component="div">12</Typography>
                                 </div>
                                 <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Available Cars</Typography>
+                                    <ShoppingCartIcon fontSize="large" style={{marginRight:'10px'}}/>
+                                    <Typography gutterBottom variant="h5" component="div">Carts</Typography>
                                 </CardContent>
                             </Card>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <div>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <div style={{height:'140px',backgroundColor:'#ff9800',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">25</Typography>
-                                </div>
-                                <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Total Rented</Typography>
-                                </CardContent>
-                            </Card>
-
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                         <div>
                             <Card sx={{ maxWidth: 345 }}>
                                 <div style={{height:'140px',backgroundColor:'#8bc34a',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">25</Typography>
+                                    <Typography variant="h2" component="div">43</Typography>
                                 </div>
                                 <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
                                     <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Lizard</Typography>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <div>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <div style={{height:'140px',backgroundColor:'#ec407a',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">20</Typography>
-                                </div>
-                                <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Lizard</Typography>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <div>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <div style={{height:'140px',backgroundColor:'#3f51b5',display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <Typography variant="h2" component="div">30</Typography>
-                                </div>
-                                <CardContent style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <GroupIcon fontSize="large" style={{marginRight:'10px'}}/>
-                                    <Typography gutterBottom variant="h5" component="div">Lizard</Typography>
+                                    <Typography gutterBottom variant="h5" component="div">Users</Typography>
                                 </CardContent>
                             </Card>
                         </div>
