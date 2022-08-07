@@ -19,6 +19,10 @@ import {Link} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Paper from "@mui/material/Paper";
+import Dashboard from "../Dashboard";
+import CartManage from "../CartManage";
+import ProductManage from "../ProductManage";
+import UserRegistration from "../UserRegistration";
 
 
 const style = {
@@ -244,127 +248,30 @@ class Home extends Component {
                                 },
                             }}
                         >
-                            {/*<Paper>
-                                <Typography variant={"h3"}>
-                                    About
-                                </Typography>
-                                <Typography variant={"h7"}>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut esse facilis
-                                    fuga in molestiae neque nihil,
-                                    obcaecati officia quis repellat saepe unde! Adipisci dolore libero nemo. Dicta,
-                                    quas.
-                                    obcaecati officia quis repellat saepe unde! Adipisci dolore libero nemo. Dicta,
-                                    quas.
-                                    obcaecati officia quis repellat saepe unde! Adipisci dolore libero nemo. Dicta,
-                                    quas.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque blanditiis
-                                    commodi excepturi facere fugit id inventore ipsam iusto nostrum
-                                    numquam perspiciatis, quidem quis totam ullam velit veritatis. Delectus, quo?
-                                </Typography>
-                            </Paper>*/}
                         </Box>
                     </Grid>
                     {/*About Ends*/}
 
-                    {/*Car List Starts*/}
+                    {/*Dashboard Starts*/}
                     <Grid>
                         <Grid item lg={12} xs={12} sm={12} md={12}>
-                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
+                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <Dashboard/>
+                        </Grid>
+                        <Grid item lg={12} xs={12} sm={12} md={12}>
+                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <CartManage/>
+                        </Grid>
+                        <Grid item lg={12} xs={12} sm={12} md={12}>
+                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <ProductManage/>
+                        </Grid>
+                        <Grid item lg={12} xs={12} sm={12} md={12}>
+                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <UserRegistration/>
                         </Grid>
                     </Grid>
-                    {/*Car List Ends*/}
-
-                    {/*Login Starts*/}
-                    <Grid>
-                        {/*<Button onClick={this.handleOpen}>Open modal</Button>*/}
-                        <Modal
-                            open={this.state.modalOpen}
-                            onClose={
-                                () => {
-                                    this.handleClose()
-                                }
-                            }
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        height: '20%'
-                                    }}
-                                >
-                                    <Typography id="modal-modal-title" variant="h3" component="h2">
-                                        Login
-                                    </Typography>
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: '40%',
-                                        width: '100%',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-around'
-                                    }}
-                                >
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="User name"
-                                        variant="outlined"
-                                        onChange={(e) => {
-                                            console.log(e.target.value)
-                                            /*/!*let formData = this.state.formData
-                                            formData.user_name = e.target.value
-                                            this.setState({formData}*!/)*/
-                                        }}
-                                        style={{width: '50%'}}
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        type="password"
-                                        label="Password"
-                                        variant="outlined"
-                                        onChange={(e) => {
-                                            console.log(e.target.value)
-                                            /*let formData = this.state.formData
-                                            formData.password = e.target.value
-                                            this.setState({formData})*/
-                                        }}
-                                        style={{width: '50%'}}
-                                    />
-                                </div>
-                                <div
-                                    style={{
-                                        height: '20%',
-                                        padding: '20px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        flexDirection: 'column'
-                                    }}
-                                >
-                                    <Link to="/adminPanel" style={{display:'flex',alignItems:'center',textDecoration: 'none'}}>
-                                    <Button
-                                        variant={"contained"}
-                                        color={"info"}
-                                        style={{width: '400px'}}
-                                        onClick={() => {
-                                            this.setState({openSettings: 'block'})
-                                            this.handleClose()
-                                        }}
-                                        type="submit"
-                                    >Login</Button>
-                                    </Link>
-                                    <Link to="/customerReg">
-                                        <Button>Not Registered yet? Register</Button>
-                                    </Link>
-                                    <Button>Forgot Password</Button>
-                                </div>
-                            </Box>
-                        </Modal>
-                    </Grid>
-                    {/*Login Ends*/}
+                    {/*Dashboard Ends*/}
 
                     {/*Main Ends*/}
 
