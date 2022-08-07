@@ -5,11 +5,12 @@ import Dashboard from "../Dashboard";
 import CartManage from "../CartManage";
 import UserRegistration from "../UserRegistration";
 import ProductManage from "../ProductManage";
+import Login from "../session/Login";
 
 function App() {
   return (
       <Routes>
-          <Route path="/" element={<Home/>}>
+           <Route path="/" element={<Login/>}>
             <Route index element={<Dashboard />} />
             <Route path="products" element={<ProductManage />} />
             <Route path="cart" element={<CartManage />} />

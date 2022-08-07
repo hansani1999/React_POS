@@ -41,19 +41,6 @@ const style = {
     p: 4,
 };
 
-/*const styleSheet = () => ({
-    form__container:{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '50%',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        backgroundColor:'red',
-    }
-})*/
-
-
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -202,17 +189,13 @@ class Home extends Component {
                             </Typography>
                             <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                                 {this.state.pages.map((page) => (
-                                    <Button
-                                       /* onClick={(e) => {
-                                            this.openSelectedPage(page.text)
-                                        }}*/
+                                   <Button
+                                        component={Link}
+                                        to={page.to}
                                         sx={{my: 2, color: 'white', display: 'block'}}
                                     >
-                                        <Link to={page.to}>
-                                            <Typography>{page.text}</Typography>
-                                        </Link>
-
-                                    </Button>
+                                    {page.text}
+                                   </Button>
                                 ))}
                             </Box>
 
@@ -267,35 +250,6 @@ class Home extends Component {
                         >
                         </Box>
                     </Grid>
-                    {/*About Ends*/}
-
-                    {/*Dashboard Starts*/}
-                    <Grid>
-                        {/*<Grid item lg={12} xs={12} sm={12} md={12}>
-                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
-                            <Dashboard/>
-                        </Grid>*/}
-                        {/*<Grid item lg={12} xs={12} sm={12} md={12}>
-                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
-                            <CartManage/>
-                        </Grid>
-                        <Grid item lg={12} xs={12} sm={12} md={12}>
-                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
-                            <ProductManage/>
-                        </Grid>
-                        <Grid item lg={12} xs={12} sm={12} md={12}>
-                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
-                            <UserRegistration/>
-                        </Grid>*/}
-                    </Grid>
-                    {/*Dashboard Ends*/}
-
-                    {/*Main Ends*/}
-
-                    {/*Footer starts*/}
-                    <div>
-                        Hello I'm Footer
-                    </div>
                     {/*Footer Ends*/}
                 </Grid>
             </Fragment>
