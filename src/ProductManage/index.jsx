@@ -528,12 +528,6 @@ class ProductManage extends Component{
                     </Dialog>
                 </div>
 
-                <Grid contaner style={{marginTop: '15px', marginLeft: '10px', marginRight: '10px'}} pt={5}>
-                    <Grid item lg={12} xs={12} sm={12} md={12} style={{display:'flex',justifyContent:'center'}}>
-                        <Typography variant="h4" pt={3}>Car List</Typography>
-                    </Grid>
-                </Grid>
-
             </Fragment>
         )
     }

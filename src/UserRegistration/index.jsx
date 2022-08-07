@@ -35,19 +35,18 @@ class UserRegistration extends Component{
 
         this.state={
             formData:{
-                carRegId: '',
-                brand: '',
-                type: '',
-                noOfPassengers: '',
-                colour: '',
-                fuelType: '',
-                transmissionType: '',
-                freeMileage:'',
-                priceForExtraKm:'',
-                img1:'',
-                img2:'',
-                img3:'',
-                img4:''
+                firstName: '',
+                lastName: '',
+                email: '',
+                username: '',
+                password: '',
+                city: '',
+                street: '',
+                streetNo:'',
+                zipCode:'',
+                lastValue:'',
+                longValue:'',
+                mobileNo:''
             },
 
             alert: false,
@@ -208,24 +207,19 @@ class UserRegistration extends Component{
     clearFields = () => {
         this.setState({
             formData: {
-                carRegId: '',
-                brand: '',
-                type: '',
-                noOfPassengers: '',
-                colour: '',
-                fuelType: '',
-                transmissionType: '',
-                freeMileage:'',
-                priceForExtraKm:'',
-                img1:'',
-                img2:'',
-                img3:'',
-                img4:''
-            },
-            fileImg1:null,
-            fileImg2:null,
-            fileImg3:null,
-            fileImg4:null
+                firstName: '',
+                lastName: '',
+                email: '',
+                username: '',
+                password: '',
+                city: '',
+                street: '',
+                streetNo:'',
+                zipCode:'',
+                lastValue:'',
+                longValue:'',
+                mobileNo:''
+            }
         });
     };
 
@@ -239,253 +233,217 @@ class UserRegistration extends Component{
         return (
             <Fragment>
                 <Grid item lg={12} xs={12} sm={12} md={12} pb={2}>
-                    <Typography variant="h4" p={2}>Car Management</Typography>
+                    <Typography variant="h4" p={2} style={{display:'flex',justifyContent:'center'}}>User Registration</Typography>
                 </Grid>
                 <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitCustomer} style={{backgroundColor:'#eeeeee'}}>
                     <Grid container className="pt-2" spacing={3} p={5}>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Car Id</Typography>
+                            <Typography variant="subtitle1">First Name</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="CR-001"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.carRegId}
+                                value={this.state.formData.firstName}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.carRegId = e.target.value
+                                    formData.firstName = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Brand</Typography>
+                            <Typography variant="subtitle1">Last Name</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="Toyota"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.brand}
+                                value={this.state.formData.lastName}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.brand = e.target.value
+                                    formData.lastName = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Type</Typography>
+                            <Typography variant="subtitle1">Email</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="colour"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.type}
+                                value={this.state.formData.email}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.type = e.target.value
+                                    formData.email = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">No. of Passengers</Typography>
+                            <Typography variant="subtitle1">User Name</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="no. of passengers"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.noOfPassengers}
+                                value={this.state.formData.username}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.noOfPassengers = e.target.value
+                                    formData.username = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Colour</Typography>
+                            <Typography variant="subtitle1">Password</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="colour"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.colour}
+                                value={this.state.formData.password}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.colour = e.target.value
+                                    formData.password = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Fuel Type</Typography>
-                            <Autocomplete
-                                disablePortal
-                                id="combo-box-demo"
-                                inputValue={this.state.formData.fuelType}
-                                options={this.state.fuelTypeList}
-                                sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="fuel type" />}
-                                getOptionLabel={
-                                    (option) => option.label
-                                }
-                                onChange={(e, value) => {
-                                    let formData = this.state.formData
-                                    formData.fuelType = value.label
-                                    this.setState({formData})
-                                    console.log(value.label);
-                                    console.log(formData)
-                                }}
-                                size="small"
-                                style={{ width: '100%' }}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Transmission Type</Typography>
-                            <Autocomplete
-                                disablePortal
-                                id="combo-box-demo"
-                                inputValue={this.state.formData.transmissionType}
-                                options={this.state.transmissionTypeList}
-                                sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Transmission type" />}
-                                getOptionLabel={
-                                    (option) => option.label
-                                }
-                                onChange={(e, value) => {
-                                    let formData = this.state.formData
-                                    formData.transmissionType = value.label
-                                    this.setState({formData})
-                                    console.log(value.label);
-                                    console.log(formData)
-                                }}
-                                size="small"
-                                style={{ width: '100%' }}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Price for Extra Km</Typography>
+                            <Typography variant="subtitle1">City</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="colour"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.priceForExtraKm}
+                                value={this.state.formData.city}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.priceForExtraKm = e.target.value
+                                    formData.city = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Typography variant="subtitle1">Free Mileage</Typography>
+                            <Typography variant="subtitle1">Street</Typography>
                             <TextValidator
                                 id="outlinedbasic"
                                 placeholder="colour"
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.freeMileage}
+                                value={this.state.formData.street}
                                 onChange={(e) => {
                                     let formData = this.state.formData
-                                    formData.freeMileage = e.target.value
+                                    formData.street = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
                             />
                         </Grid>
-                        <Grid container style={{marginTop: '10px'}} direction="row" justifyContent="space-around" pt={5}>
-                            <Typography variant="h6" p={4}>Upload Images</Typography>
-                            <Grid item lg={12} xs={12} sm={12} md={12} pb={2} style={{display:'flex',justifyContent:'center'}}>
-                                <Button variant="contained" style={{marginLeft:3,marginBottom:3}} startIcon={<UploadIcon />} component="label">Image 1
-                                    <input hidden accept="image/*" multiple type="file"
-                                           onChange={(e)=>{
-                                               let formData = this.state.formData
-                                               formData.img1 = e.target.files[0];
-                                               this.setState({formData})
-                                               console.log(this.state.formData.img1)
-                                               this.setState({fileImg1:URL.createObjectURL(e.target.files[0])})
-                                           }}
-                                    />
-                                </Button>
-                                <Button variant="contained" style={{marginLeft:3,marginBottom:3}} startIcon={<UploadIcon />} component="label">Image 2
-                                    <input hidden accept="image/*" multiple type="file"
-                                           onChange={(e)=>{
-                                               let formData = this.state.formData
-                                               formData.img2 = e.target.files[0];
-                                               this.setState({formData})
-                                               //this.setState({img2: e.target.files[0]})
-                                               console.log(this.state.formData.img2)
-                                               this.setState({fileImg2:URL.createObjectURL(e.target.files[0])})
-                                           }}
-                                    />
-                                </Button>
-                                <Button variant="contained" style={{marginLeft:3,marginBottom:3}} startIcon={<UploadIcon />} component="label">Image 3
-                                    <input hidden accept="image/*" multiple type="file"
-                                           onChange={(e)=>{
-                                               let formData = this.state.formData
-                                               formData.img3 = e.target.files[0];
-                                               this.setState({formData})
-                                               console.log(this.state.formData)
-                                               console.log(this.state.formData.img3)
-                                               this.setState({fileImg3:URL.createObjectURL(e.target.files[0])})
-                                           }}
-                                    />
-                                </Button>
-                                <Button variant="contained" style={{marginLeft:3,marginBottom:3}} startIcon={<UploadIcon />} component="label">Image 4
-                                    <input hidden accept="image/*" multiple type="file"
-                                           onChange={(e)=>{
-                                               let formData = this.state.formData
-                                               formData.img4 = e.target.files[0];
-                                               this.setState({formData})
-                                               console.log(this.state.formData.img4)
-                                               this.setState({fileImg4:URL.createObjectURL(e.target.files[0])})
-                                           }}
-                                    />
-                                </Button>
-                            </Grid>
-
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Typography variant="subtitle1">Street No</Typography>
+                            <TextValidator
+                                id="outlinedbasic"
+                                placeholder="colour"
+                                variant="outlined"
+                                size="small"
+                                style={{width: '100%'}}
+                                value={this.state.formData.streetNo}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.streetNo = e.target.value
+                                    this.setState({formData})
+                                }}
+                                validators={['required']}
+                            />
                         </Grid>
-                        <Grid container className="pt-2" spacing={5} p={5}>
-                            <Grid item xs={12} sm={12} md={3} lg={3}>
-                                <div>
-                                    <img alt="" src={this.state.fileImg1} style={{width:'270px'}}/>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={3} lg={3}>
-                                <div>
-                                    <img alt="" src={this.state.fileImg2} style={{width:'270px'}}/>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={3} lg={3}>
-                                <div>
-                                    <img alt="" src={this.state.fileImg3} style={{width:'270px'}}/>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={3} lg={3}>
-                                <div>
-                                    <img alt="" src={this.state.fileImg4} style={{width:'270px'}}/>
-                                </div>
-                            </Grid>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Typography variant="subtitle1">Zip Code</Typography>
+                            <TextValidator
+                                id="outlinedbasic"
+                                placeholder="colour"
+                                variant="outlined"
+                                size="small"
+                                style={{width: '100%'}}
+                                value={this.state.formData.zipCode}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.zipCode = e.target.value
+                                    this.setState({formData})
+                                }}
+                                validators={['required']}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Typography variant="subtitle1">Last Value</Typography>
+                            <TextValidator
+                                id="outlinedbasic"
+                                placeholder="colour"
+                                variant="outlined"
+                                size="small"
+                                style={{width: '100%'}}
+                                value={this.state.formData.lastValue}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.lastValue = e.target.value
+                                    this.setState({formData})
+                                }}
+                                validators={['required']}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Typography variant="subtitle1">Long Value</Typography>
+                            <TextValidator
+                                id="outlinedbasic"
+                                placeholder="colour"
+                                variant="outlined"
+                                size="small"
+                                style={{width: '100%'}}
+                                value={this.state.formData.longValue}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.longValue = e.target.value
+                                    this.setState({formData})
+                                }}
+                                validators={['required']}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Typography variant="subtitle1">Mobile No</Typography>
+                            <TextValidator
+                                id="outlinedbasic"
+                                placeholder="colour"
+                                variant="outlined"
+                                size="small"
+                                style={{width: '100%'}}
+                                value={this.state.formData.mobileNo}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.mobileNo = e.target.value
+                                    this.setState({formData})
+                                }}
+                                validators={['required']}
+                            />
                         </Grid>
                         <Grid container style={{marginTop: '30px'}} direction="row" justifyContent="flex-end" spacing={4}>
                             <Button type="submit" variant="contained" color={this.state.btnColor} style={{marginLeft:3}}> {this.state.btnLabel} </Button>
-                            {/*<Button type="submit" variant="contained" color="warning" style={{marginLeft:3}}> Update </Button>
-                            <Button type="submit" variant="contained" color="error" style={{marginLeft:3}}> Delete </Button>*/}
+                            <Button type="submit" variant="contained" color="warning" style={{marginLeft:3}}>Clear </Button>
                         </Grid>
                     </Grid>
                     <GDSESnackBar
@@ -499,51 +457,23 @@ class UserRegistration extends Component{
                         variant="filled"
                     />
                 </ValidatorForm>
-                <div>
-                    {/*<Button variant="outlined" onClick={this.handleClickOpen}>
-                        Open alert dialog
-                    </Button>*/}
-                    <Dialog
-                        open={this.state.openAlert}
-                        onClose={this.handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                    >
-                        <DialogTitle id="alert-dialog-title">
-                            {"Are you sure you want to delete this Car?"}
-                        </DialogTitle>
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                                All the data for this car will be removed
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleClose}>No</Button>
-                            <Button onClick={()=>{
-                                this.deleteCar(this.state.carDeleteId)
-                            }} autoFocus>
-                                Yes
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
 
                 <Grid contaner style={{marginTop: '15px', marginLeft: '10px', marginRight: '10px'}} pt={5}>
-                    <Grid item lg={12} xs={12} sm={12} md={12} style={{display:'flex',justifyContent:'center'}}>
-                        <Typography variant="h4" pt={3}>Car List</Typography>
-                    </Grid>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 700 }} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <this.StyledTableCell align="left">Id</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Brand</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Color</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Type</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">No. of Passengers</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Fuel Type</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Transmission Type</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Price for Extra Km</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">First Name</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Last Name</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Email</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">User Name</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Password</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">City</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Street</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">StreetNo</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Zip Code</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Last Value</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Long Value</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Action</this.StyledTableCell>
                                 </TableRow>
                             </TableHead>
