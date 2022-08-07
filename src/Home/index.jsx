@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import {Link} from "react-router-dom";
+import { Outlet,Link} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Paper from "@mui/material/Paper";
@@ -62,10 +62,24 @@ class Home extends Component {
             open: false,
             anchorElNav: null,
             anchorElUser: null,
-            pages: [{navItem: 'Products', itemIndex: 1}, {navItem: 'Cart', itemIndex: 2}, {
-                navItem: 'User',
-                itemIndex: 3
-            }],
+            pages : [
+                {
+                    text: 'Dashboard',
+                    to: '/'
+                },
+                {
+                    text: 'Products',
+                    to: '/products',
+                },
+                {
+                    text: 'Cart',
+                    to: '/cart',
+                },
+                {
+                    text: 'User',
+                    to: '/user',
+                }
+            ],
             settings: ['Profile', 'Account', 'Logout'],
             modalOpen: false,
             openSettings: 'block'
@@ -161,8 +175,8 @@ class Home extends Component {
                                     }}
                                 >
                                     {this.state.pages.map((page) => (
-                                        <MenuItem key={page.navItem} onClick={this.handleCloseNavMenu}>
-                                            <Typography textAlign="center">{page.navItem}</Typography>
+                                        <MenuItem key={page.text} onClick={this.handleCloseNavMenu}>
+                                            <Typography textAlign="center">{page.text}</Typography>
                                         </MenuItem>
                                     ))}
                                 </Menu>
@@ -189,13 +203,15 @@ class Home extends Component {
                             <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                                 {this.state.pages.map((page) => (
                                     <Button
-                                        key={page.navItem}
-                                        onClick={(e) => {
-                                            this.openSelectedPage(page.navItem)
-                                        }}
+                                       /* onClick={(e) => {
+                                            this.openSelectedPage(page.text)
+                                        }}*/
                                         sx={{my: 2, color: 'white', display: 'block'}}
                                     >
-                                        {page.navItem}
+                                        <Link to={page.to}>
+                                            <Typography>{page.text}</Typography>
+                                        </Link>
+
                                     </Button>
                                 ))}
                             </Box>
@@ -232,6 +248,7 @@ class Home extends Component {
                         </Toolbar>
                     </Container>
                 </AppBar>
+                <Outlet />
                 {/*Nav bar end*/}
 
                 {/*Main Starts*/}
@@ -254,22 +271,22 @@ class Home extends Component {
 
                     {/*Dashboard Starts*/}
                     <Grid>
-                        <Grid item lg={12} xs={12} sm={12} md={12}>
-                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                        {/*<Grid item lg={12} xs={12} sm={12} md={12}>
+                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
                             <Dashboard/>
-                        </Grid>
-                        <Grid item lg={12} xs={12} sm={12} md={12}>
-                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                        </Grid>*/}
+                        {/*<Grid item lg={12} xs={12} sm={12} md={12}>
+                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
                             <CartManage/>
                         </Grid>
                         <Grid item lg={12} xs={12} sm={12} md={12}>
-                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
                             <ProductManage/>
                         </Grid>
                         <Grid item lg={12} xs={12} sm={12} md={12}>
-                            {/*<Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>*/}
+                            <Typography variant="h3" style={{display: 'flex', justifyContent: 'center'}} mt={5}>Dashboard</Typography>
                             <UserRegistration/>
-                        </Grid>
+                        </Grid>*/}
                     </Grid>
                     {/*Dashboard Ends*/}
 
