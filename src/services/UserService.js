@@ -30,7 +30,7 @@ class UserService {
 
     putUser = async (data) => {
         const promise = new Promise((resolve, reject) => {
-            axios.put('users', data)
+            axios.put('users'+'/7', data)
                 .then((res) => {
                     return resolve(res)
                 })

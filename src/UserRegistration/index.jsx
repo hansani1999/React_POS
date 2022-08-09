@@ -119,20 +119,6 @@ class UserRegistration extends Component{
     };
 
     submitCustomer = async()=>{
-        /*let formData = new FormData();
-        formData.append('carRegId',this.state.formData.carRegId)
-        formData.append('brand',this.state.formData.brand)
-        formData.append('type',this.state.formData.type)
-        formData.append('noOfPassengers',this.state.formData.noOfPassengers)
-        formData.append('colour',this.state.formData.colour)
-        formData.append('fuelType',this.state.formData.fuelType)
-        formData.append('transmissionType',this.state.formData.transmissionType)
-        formData.append('freeMileage',this.state.formData.freeMileage)
-        formData.append('priceForExtraKm',this.state.formData.priceForExtraKm)
-        formData.append('cImg1',this.state.formData.img1)
-        formData.append('cImg2',this.state.formData.img2)
-        formData.append('cImg3',this.state.formData.img3)
-        formData.append('cImg4',this.state.formData.img4)*/
         let formData = this.state.form;
         if(this.state.btnLabel === "save") {
             let res = await UserService.postUser(formData);
@@ -159,17 +145,17 @@ class UserRegistration extends Component{
             if(res.status === 200) {
                 this.setState({
                     alert: true,
-                    message: res.statusText,
+                    message: "Updated Successfully",
                     severity: 'success',
                     btnLabel: 'save',
-                    btnColor: 'primary'
+                    btnColor: 'primary',
                 });
                 this.clearFields();
                 this.loadData();
             } else {
                 this.setState({
                     alert: true,
-                    message: res.response.data.message,
+                    message: "Error",
                     severity: 'error'
                 });
             }
@@ -185,7 +171,6 @@ class UserRegistration extends Component{
             });
         }
         console.log(this.state.data)
-
     };
 
     componentDidMount() {
@@ -194,35 +179,31 @@ class UserRegistration extends Component{
 
     editCarOnClick = (data) => {
         console.log(data)
-        console.log(data.transmissionType)
-        let formData = this.state.formData
+        let formData = this.state.form;
+        formData = data
 
-        formData.carRegId= data.carRegId
-        formData.brand= data.brand
-        formData.type= data.type
-        formData.noOfPassengers= data.noOfPassengers
-        formData.colour= data.colour
-        formData.fuelType= data.fuelType
-        formData.transmissionType= data.transmissionType
-        formData.freeMileage=data.freeMileage
-        formData.priceForExtraKm=data.priceForExtraKm
-        formData.img1=data.img1
-        formData.img2=data.img2
-        formData.img3=data.img3
-        formData.img4=data.img4
-
-        this.setState({formData})
+        this.setState({
+            form:{
+              address:{
+                  city: data.address.city,
+                  geolocation:{lat: data.address.geolocation.lat, long: data.address.geolocation.long},
+                  number: data.address.number,
+                  street: data.address.street,
+                  zipcode: data.address.zipcode
+              },
+              email: data.email,
+              id: '',
+              name:{firstname: data.name.firstname, lastname: data.name.lastname},
+              password: data.password,
+              phone: data.phone,
+              username: data.username
+            }
+        })
         this.setState({
             btnLabel: 'update',
             btnColor: 'secondary',
-            /*fileImg1:URL.createObjectURL(data.img1),
-            fileImg2:URL.createObjectURL(data.img2),
-            fileImg3:URL.createObjectURL(data.img3),
-            fileImg4:URL.createObjectURL(data.img4)*/
         });
-        this.loadCarImages();
-        console.log(this.state.formData.carRegId)
-        console.log(this.state.formData.transmissionType)
+
     };
 
     loadCarImages= () =>{
@@ -254,19 +235,20 @@ class UserRegistration extends Component{
 
     clearFields = () => {
         this.setState({
-            formData: {
-                firstName: '',
-                lastName: '',
+            form:{
+                address:{
+                    city: '',
+                    geolocation:{lat: '', long: ''},
+                    number: '',
+                    street: '',
+                    zipcode: ''
+                },
                 email: '',
-                username: '',
+                id: '',
+                name:{firstname: '', lastname: ''},
                 password: '',
-                city: '',
-                street: '',
-                streetNo:'',
-                zipCode:'',
-                lastValue:'',
-                longValue:'',
-                mobileNo:''
+                phone: '',
+                username: ''
             }
         });
     };
@@ -426,10 +408,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.address.zipCode}
+                                value={this.state.form.address.zipcode}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.address.zipCode = e.target.value
+                                    formData.address.zipcode = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -477,10 +459,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.mobileNo}
+                                value={this.state.form.phone}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.mobileNo = e.target.value
+                                    formData.phone = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -488,7 +470,7 @@ class UserRegistration extends Component{
                         </Grid>
                         <Grid container style={{marginTop: '30px'}} direction="row" justifyContent="flex-end" spacing={4}>
                             <Button type="submit" variant="contained" color={this.state.btnColor} style={{marginLeft:3}}> {this.state.btnLabel} </Button>
-                            <Button type="submit" variant="contained" color="warning" style={{marginLeft:3}}>Clear </Button>
+                            <Button type="button" variant="contained" color="warning" onClick={this.clearFields} style={{marginLeft:3}}>Clear </Button>
                         </Grid>
                     </Grid>
                     <GDSESnackBar
