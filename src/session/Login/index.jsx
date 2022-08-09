@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import GDSESnackBar from "../../Components/SnackBar";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
+import {Outlet} from "@mui/icons-material";
 /******/
 
 
@@ -92,11 +93,11 @@ class Login extends Component {
                         >Login</Button>
                         <div className={classes.btn__container2}>
                             <Typography p={1}>Create New User Account?</Typography>
-                            <Link to="/">
+                            <Link to="index">
                                 <Button>Click Here</Button>
+                                <Outlet/>
                             </Link>
                         </div>
-
                     </div>
                 </div>
                     <GDSESnackBar

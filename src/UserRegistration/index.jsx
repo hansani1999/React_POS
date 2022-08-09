@@ -28,6 +28,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import UserService from "../services/UserService";
 
 class UserRegistration extends Component{
     constructor(props) {
@@ -47,6 +48,21 @@ class UserRegistration extends Component{
                 lastValue:'',
                 longValue:'',
                 mobileNo:''
+            },
+            form:{
+                address:{
+                    city: '',
+                    geolocation:{lat: '', long: ''},
+                    number: '',
+                    street: '',
+                    zipcode: ''
+                },
+                email: '',
+                id: '',
+                name:{firstname: '', lastname: ''},
+                password: '',
+                phone: '',
+                username: ''
             },
 
             alert: false,
@@ -103,7 +119,7 @@ class UserRegistration extends Component{
     };
 
     submitCustomer = async()=>{
-        let formData = new FormData();
+        /*let formData = new FormData();
         formData.append('carRegId',this.state.formData.carRegId)
         formData.append('brand',this.state.formData.brand)
         formData.append('type',this.state.formData.type)
@@ -116,9 +132,9 @@ class UserRegistration extends Component{
         formData.append('cImg1',this.state.formData.img1)
         formData.append('cImg2',this.state.formData.img2)
         formData.append('cImg3',this.state.formData.img3)
-        formData.append('cImg4',this.state.formData.img4)
+        formData.append('cImg4',this.state.formData.img4)*/
 
-        let res = "";
+        let res = await UserService.postUser();
 
         console.log(res)
 
@@ -131,18 +147,20 @@ class UserRegistration extends Component{
     }
 
     loadData = async () => {
-        let res = "";
+        let res = await UserService.fetchUser();
 
         if (res.status === 200) {
             this.setState({
-                data: res.data.data
+                data: res.data
             });
         }
-        console.log(this.state.data)    // print customers array
-
-        /*this.exampleForMap()*/
+        console.log(this.state.data)
 
     };
+
+    componentDidMount() {
+        this.loadData();
+    }
 
     editCarOnClick = (data) => {
         console.log(data)
@@ -224,10 +242,6 @@ class UserRegistration extends Component{
     };
 
 
-    componentDidMount() {
-        this.loadData()
-    }
-
     render() {
         let { classes } = this.props
         return (
@@ -245,11 +259,11 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.firstName}
+                                value={this.state.form.name.firstname}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
-                                    formData.firstName = e.target.value
-                                    this.setState({formData})
+                                    let form = this.state.form
+                                    form.name.firstname = e.target.value
+                                    this.setState({form})
                                 }}
                                 validators={['required']}
                             />
@@ -262,11 +276,11 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.lastName}
+                                value={this.state.form.name.lastname}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
-                                    formData.lastName = e.target.value
-                                    this.setState({formData})
+                                    let form = this.state.form
+                                    form.name.lastname = e.target.value
+                                    this.setState({form})
                                 }}
                                 validators={['required']}
                             />
@@ -279,9 +293,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.email}
+                                value={this.state.form.email}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.email = e.target.value
                                     this.setState({formData})
                                 }}
@@ -296,9 +310,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.username}
+                                value={this.state.form.username}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.username = e.target.value
                                     this.setState({formData})
                                 }}
@@ -312,10 +326,11 @@ class UserRegistration extends Component{
                                 placeholder="colour"
                                 variant="outlined"
                                 size="small"
+                                type="password"
                                 style={{width: '100%'}}
-                                value={this.state.formData.password}
+                                value={this.state.form.password}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.password = e.target.value
                                     this.setState({formData})
                                 }}
@@ -330,9 +345,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.city}
+                                value={this.state.form.city}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.city = e.target.value
                                     this.setState({formData})
                                 }}
@@ -347,9 +362,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.street}
+                                value={this.state.form.street}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.street = e.target.value
                                     this.setState({formData})
                                 }}
@@ -364,10 +379,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.streetNo}
+                                value={this.state.form.number}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
-                                    formData.streetNo = e.target.value
+                                    let formData = this.state.form
+                                    formData.number = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -381,9 +396,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.zipCode}
+                                value={this.state.form.zipCode}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.zipCode = e.target.value
                                     this.setState({formData})
                                 }}
@@ -398,9 +413,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.lastValue}
+                                value={this.state.form.lastValue}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.lastValue = e.target.value
                                     this.setState({formData})
                                 }}
@@ -415,9 +430,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.longValue}
+                                value={this.state.form.longValue}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.longValue = e.target.value
                                     this.setState({formData})
                                 }}
@@ -432,9 +447,9 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.formData.mobileNo}
+                                value={this.state.form.mobileNo}
                                 onChange={(e) => {
-                                    let formData = this.state.formData
+                                    let formData = this.state.form
                                     formData.mobileNo = e.target.value
                                     this.setState({formData})
                                 }}
@@ -467,13 +482,13 @@ class UserRegistration extends Component{
                                     <this.StyledTableCell align="left">Last Name</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Email</this.StyledTableCell>
                                     <this.StyledTableCell align="left">User Name</this.StyledTableCell>
-                                    <this.StyledTableCell align="left">Password</this.StyledTableCell>
                                     <this.StyledTableCell align="left">City</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Street</this.StyledTableCell>
                                     <this.StyledTableCell align="left">StreetNo</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Zip Code</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Last Value</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Long Value</this.StyledTableCell>
+                                    <this.StyledTableCell align="left">Phone</this.StyledTableCell>
                                     <this.StyledTableCell align="left">Action</this.StyledTableCell>
                                 </TableRow>
                             </TableHead>
@@ -481,14 +496,17 @@ class UserRegistration extends Component{
                                 {
                                     this.state.data.map((row) => (
                                         <TableRow>
-                                            <TableCell align="left">{row.carRegId}</TableCell>
-                                            <TableCell align="left">{row.brand}</TableCell>
-                                            <TableCell align="left">{row.colour}</TableCell>
-                                            <TableCell align="left">{row.type}</TableCell>
-                                            <TableCell align="left">{row.noOfPassengers}</TableCell>
-                                            <TableCell align="left">{row.fuelType}</TableCell>
-                                            <TableCell align="left">{row.transmissionType}</TableCell>
-                                            <TableCell align="left">{row.priceForExtraKm}</TableCell>
+                                            <TableCell align="left">{row.name.firstname}</TableCell>
+                                            <TableCell align="left">{row.name.lastname}</TableCell>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.username}</TableCell>
+                                            <TableCell align="left">{row.address.city}</TableCell>
+                                            <TableCell align="left">{row.address.street}</TableCell>
+                                            <TableCell align="left">{row.address.number}</TableCell>
+                                            <TableCell align="left">{row.address.zipcode}</TableCell>
+                                            <TableCell align="left">{row.address.geolocation.long}</TableCell>
+                                            <TableCell align="left">{row.address.geolocation.lat}</TableCell>
+                                            <TableCell align="left">{row.phone}</TableCell>
                                             <TableCell align="left">
                                                 <Tooltip title="Edit">
                                                     <IconButton

@@ -231,7 +231,7 @@ class Home extends Component {
                         </Toolbar>
                     </Container>
                 </AppBar>
-                <Outlet />
+                <Outlet/>
                 {/*Nav bar end*/}
 
                 {/*Main Starts*/}
