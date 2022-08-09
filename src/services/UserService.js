@@ -3,7 +3,7 @@ import axios from "../axios";
 class UserService {
     postUser = async (data) => {
         const promise = new Promise((resolve, reject) => {
-            axios.post('user', data)    // 20s
+            axios.post('users', data)    // 20s
                 .then((res) => {
                     return resolve(res)
                 })
@@ -30,7 +30,7 @@ class UserService {
 
     putUser = async (data) => {
         const promise = new Promise((resolve, reject) => {
-            axios.put('user', data)
+            axios.put('users', data)
                 .then((res) => {
                     return resolve(res)
                 })
@@ -47,7 +47,7 @@ class UserService {
         }
 
         const promise = new Promise((resolve, reject) => {
-            axios.delete('user',{params:params})
+            axios.delete('users',{params:params})
                 .then((res) => {
                     return resolve(res)
                 })

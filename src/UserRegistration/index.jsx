@@ -133,16 +133,46 @@ class UserRegistration extends Component{
         formData.append('cImg2',this.state.formData.img2)
         formData.append('cImg3',this.state.formData.img3)
         formData.append('cImg4',this.state.formData.img4)*/
+        let formData = this.state.form;
+        if(this.state.btnLabel === "save") {
+            let res = await UserService.postUser(formData);
 
-        let res = await UserService.postUser();
+            console.log(res)    //print the promise
 
-        console.log(res)
-
-        if (res.status===200){
-            console.log("Car saved successfully!")
-            this.loadData()
-            this.clearFields()
-            this.setState({alert:true,severity:'success',message:res.data.message})
+            if (res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: "User Registered Successfully",
+                    severity: 'success'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: "Error",
+                    severity: 'error'
+                });
+            }
+        } else {
+            let res = await UserService.putUser(formData);
+            if(res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: res.statusText,
+                    severity: 'success',
+                    btnLabel: 'save',
+                    btnColor: 'primary'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
         }
     }
 
@@ -345,10 +375,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.city}
+                                value={this.state.form.address.city}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.city = e.target.value
+                                    formData.address.city = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -362,10 +392,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.street}
+                                value={this.state.form.address.street}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.street = e.target.value
+                                    formData.address.street = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -379,10 +409,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.number}
+                                value={this.state.form.address.number}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.number = e.target.value
+                                    formData.address.number = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -396,10 +426,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.zipCode}
+                                value={this.state.form.address.zipCode}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.zipCode = e.target.value
+                                    formData.address.zipCode = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -413,10 +443,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.lastValue}
+                                value={this.state.form.address.geolocation.lat}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.lastValue = e.target.value
+                                    formData.address.geolocation.lat= e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
@@ -430,10 +460,10 @@ class UserRegistration extends Component{
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
-                                value={this.state.form.longValue}
+                                value={this.state.form.address.geolocation.long}
                                 onChange={(e) => {
                                     let formData = this.state.form
-                                    formData.longValue = e.target.value
+                                    formData.address.geolocation.long = e.target.value
                                     this.setState({formData})
                                 }}
                                 validators={['required']}
