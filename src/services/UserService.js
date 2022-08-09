@@ -47,7 +47,7 @@ class UserService {
         }
 
         const promise = new Promise((resolve, reject) => {
-            axios.delete('users',{params:params})
+            axios.delete('users/'+id,)
                 .then((res) => {
                     return resolve(res)
                 })

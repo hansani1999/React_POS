@@ -210,14 +210,14 @@ class UserRegistration extends Component{
 
     }
 
-    deleteCar = async (id) => {
+    deleteUser = async (id) => {
         console.log(id)
 
-        let res = "";
+        let res = await UserService.deleteUser(id);
         if (res.status===200){
             this.setState({
                 alert: true,
-                message: res.data.message,
+                message: "Deleted",
                 severity: 'success'
             });
             this.handleClose()
@@ -227,7 +227,7 @@ class UserRegistration extends Component{
         }else {
             this.setState({
                 alert: true,
-                message: res.response.data.message,
+                message: "Error",
                 severity: 'error'
             });
         }
@@ -536,7 +536,7 @@ class UserRegistration extends Component{
                                                             color="error"
                                                             onClick={() => {
                                                                 console.log("edit icon clicked!")
-                                                                this.handleClickOpen(row.carRegId)
+                                                                this.deleteUser(6)
                                                                 //this.deleteCar(row.carRegId);
                                                             }}
                                                         />
